@@ -5,7 +5,8 @@ import numpy as np
 def load_data(filename):
     return pd.read_csv(filename)
 
-# PP와 PET를 data를 분류 (라벨 열은 제외하고, 오직 값만을 dataFrame으로 저장)
+# PP와 PET를 데이터를 분류
+# (라벨 열은 제외하고, 오직 값만을 dataFrame으로 저장)
 def separate_data_by_type(data, type_col='Type'):
     pp_data = data[data[type_col] == 'PP'].drop([type_col], axis=1)
     pet_data = data[data[type_col] == 'PET'].drop([type_col], axis=1)

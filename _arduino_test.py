@@ -15,7 +15,6 @@ while True:
     time.sleep(0.1)
     
     if py_serial.readable():
-        
         # 들어온 값이 있으면 값을 한 줄 읽음 (BYTE 단위로 받은 상태)
         # BYTE 단위로 받은 response 모습 : b'\xec\x97\x86\xec\x9d\x8c\r\n'
         response = py_serial.readline()
