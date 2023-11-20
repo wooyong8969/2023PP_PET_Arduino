@@ -17,9 +17,11 @@ py_serial = serial.Serial(
     timeout = 1
 )
 
+# 아두이노에서 데이터 읽기
 while True:
-    # 아두이노에서 데이터 읽기
     if py_serial.readable():
+        # 분광 센서 값은 아두이노 시리얼 모니터에서 각 값이 공백을 기준으로 구분되어 출력됐다 가정
+        # ex) 40334 59925 59753 61173 62020 62094 61655 58229 62479 3761
         input_data = py_serial.readline()
         input_data = input_data.decode().strip()  # 문자열 변환 및 공백 제거
         x_data = np.fromstring(input_data, sep=',').reshape(1, -1)
@@ -37,4 +39,5 @@ while True:
         # 아두이노로 예측 결과 전송
         py_serial.write(prediction_str.encode())
 
+    # 통신 오류 방지 대기
     time.sleep(0.1)
